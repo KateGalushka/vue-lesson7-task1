@@ -7,20 +7,26 @@ export default createStore({
     state: {
 		categories,
 		students,
-		categoryVal:''
+		categoryVal:'',
+		rating: 12
 
 	 },
     getters: {
 		categoriesList:({ categories })=> categories,
 		studentsList:({ students })=> students,
 		currentCategoryVal: ({ categoryVal})=> categoryVal,
+		currentRating: ({ rating }) => rating
 	 },
     mutations: {
 		 updateCategory(state, val){
 			state.categoryVal = val;
 		 },
 		 clearCategoryValue(state){
-			state.categoryVal = null
+			state.categoryVal = null;
+		 },
+		 updateRating(state, val){
+			state.rating = val;
+			console.log(state.rating);
 		 }
 	 },
     actions: {
@@ -29,6 +35,9 @@ export default createStore({
 		 },
 		 onClearCategoryVal({ commit }){
 			commit('clearCategoryValue')
+		 },
+		 updateRatingVal({ commit }, newVal){
+			 commit('updateRating', newVal)
 		 }
 	 },
     modules: {},

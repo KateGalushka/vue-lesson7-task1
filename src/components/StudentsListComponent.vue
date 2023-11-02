@@ -8,7 +8,8 @@
 			<div v-if="isListEmpty">Немає студентів</div>
 			<tr v-for="student in filteredStudentsList" :key="student.id">
 				<td>{{ student.name }}</td>
-				<td class="student__rate">{{ student.rate }}</td>
+				<td v-if="currentRating == 12" class="student__rate">{{ student.rate }}</td>
+				<td v-if="currentRating == 5" class="student__rate">{{ (student.rate/2.4).toFixed(1) }}</td>
 			</tr>
 		</table>
 </template>
@@ -20,7 +21,7 @@ import { mapGetters } from 'vuex';
 		name: 'StudentsListComponent',
 
 		computed: {
-		...mapGetters(['studentsList', 'currentCategoryVal']),
+		...mapGetters(['studentsList', 'currentCategoryVal', 'currentRating']),
 
 		isListEmpty(){
 			return this.filteredStudentsList.length == 0;

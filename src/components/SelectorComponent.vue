@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<label for="rating">Система оцінювання</label>
-		<select name="rating" id="rating">
+		<select v-model="currentRating" name="rating" id="rating">
 			<option value="12">12</option>
 			<option value="5">5</option>
 		</select>
@@ -27,7 +27,7 @@ import {mapGetters,mapActions} from 'vuex';
 		name: 'SelectorComponent',
 		
 		computed: {
-			...mapGetters(['categoriesList', 'currentCategoryVal']),
+			...mapGetters(['categoriesList', 'currentCategoryVal', 'currentRating']),
 
 			currentCategory: {
 				get(){
@@ -36,10 +36,18 @@ import {mapGetters,mapActions} from 'vuex';
 				set(newVal){
 					this.updateCategoryVal(newVal);
 				}
+			},
+			currentRating: {
+				get(){
+					return this.currentRating
+				},
+				set(newVal){
+					this.updateRatingVal(newVal);
+				}
 			}
 		},
 		methods: {
-			...mapActions(['updateCategoryVal', 'onClearCategoryVal'])
+			...mapActions(['updateCategoryVal', 'updateRatingVal', 'onClearCategoryVal'])
 		},
 	}
 </script>
